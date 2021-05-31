@@ -6,18 +6,15 @@ import com.desafio.desafioibm.handlers.ExceptionHandler;
 import com.desafio.desafioibm.service.AssociadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @RestController
 public class AssociadoController {
 
     private AssociadoService service;
-
-    @Autowired
-    RestTemplate restTemplate;
 
     @Autowired
     public AssociadoController(AssociadoService service) {
@@ -27,6 +24,26 @@ public class AssociadoController {
     @PostMapping("/salvarAssociado")
     public ResponseEntity<Associado> salvarAssociado(@RequestBody Associado associado) throws ExceptionHandler {
         return ResponseEntity.ok(this.service.salvarAssociado(associado));
+    }
+
+    @GetMapping("/retornaAssociado/{id}")
+    public ResponseEntity<Associado> buscaAssociado(@PathVariable int id){
+        return ResponseEntity.ok(this.service.buscaAssociado(id));
+    }
+
+    @GetMapping("/buscaTodosAssociados")
+    public ResponseEntity<List<Associado>> buscaTodosAssociados(){
+        return ResponseEntity.ok(this.service.buscaTodosAssociados());
+    }
+
+    @DeleteMapping("/deletarAssociado/{id}")
+    public void deletarAssociado(@PathVariable int id){
+        this.service.deletarAssociado(id);
+    }
+
+    @PutMapping("editarAssociado")
+    public ResponseEntity<Associado> editarAssociado(@RequestBody Associado associado){
+        return ResponseEntity.ok(this.service.editarAssociado(associado));
     }
 
     @PostMapping("/verificaCpf")

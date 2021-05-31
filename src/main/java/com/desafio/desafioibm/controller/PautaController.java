@@ -5,7 +5,10 @@ import com.desafio.desafioibm.handlers.ExceptionHandler;
 import com.desafio.desafioibm.handlers.SessaoHandler;
 import com.desafio.desafioibm.service.PautaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class PautaController {
@@ -18,22 +21,37 @@ public class PautaController {
     }
 
     @PostMapping("/cadastrarPauta")
-    public Pauta cadastrarPauta(@RequestBody Pauta pauta) throws ExceptionHandler {
-        return this.service.cadastrarPauta(pauta);
+    public ResponseEntity<Pauta> cadastrarPauta(@RequestBody Pauta pauta) throws ExceptionHandler {
+        return ResponseEntity.ok(this.service.cadastrarPauta(pauta));
     }
 
-    @PostMapping("/abrirSessao/{pautaId}")
-    public Pauta abrirSessao(@RequestBody SessaoHandler sessao, @PathVariable int pautaId){
-        return this.service.abrirSessao(sessao, pautaId);
+    @GetMapping("/buscaPauta/{id}")
+    public ResponseEntity<Pauta> buscaPauta(@PathVariable int id){
+        return ResponseEntity.ok(this.service.buscaPauta(id));
+    }
+
+    @GetMapping("buscaTodasPautas")
+    public ResponseEntity<List<Pauta>> buscaTodasPautas(){
+        return ResponseEntity.ok(this.service.buscaTodasPautas());
+    }
+
+    @PutMapping("/editarPauta")
+    public ResponseEntity<Pauta> editarPauta(@RequestBody Pauta pauta){
+        return ResponseEntity.ok(this.service.editarPauta(pauta));
     }
 
     @DeleteMapping("/excluirPauta/{pautaId}")
-    public String excluirPauta(@PathVariable int pautaId){
-        return this.service.excluirPauta(pautaId);
+    public void excluirPauta(@PathVariable int pautaId){
+        this.service.excluirPauta(pautaId);
+    }
+
+    @PostMapping("/abrirSessao/{pautaId}")
+    public ResponseEntity<Pauta> abrirSessao(@RequestBody SessaoHandler sessao, @PathVariable int pautaId){
+        return ResponseEntity.ok(this.service.abrirSessao(sessao, pautaId));
     }
 
     @GetMapping("/fecharSessao/{pautaId}")
-    public Pauta fecharSessao(@PathVariable int pautaId){
-        return this.service.fecharSessao(pautaId);
+    public ResponseEntity<Pauta> fecharSessao(@PathVariable int pautaId){
+        return ResponseEntity.ok(this.service.fecharSessao(pautaId));
     }
 }

@@ -49,7 +49,7 @@ public class VotoService {
         }
     }
 
-    public long contagemVotos(int pautaId){
+    public Long contagemVotos(int pautaId){
         List<Voto> voto = this.repositorio.findByPautaId(pautaId);
 
         return voto.stream().count();
@@ -66,5 +66,17 @@ public class VotoService {
                 resultadoVotosNegativos+" votos para 'Não'";
 
         return resultado;
+    }
+
+    public Voto buscaVoto(int id) {
+        return this.repositorio.findById(id).orElse(null);
+    }
+
+    public void deletarVoto(int id) {
+        this.repositorio.deleteById(id);
+    }
+
+    public List<Voto> buscaTodosVotos() {
+        return this.repositorio.findAll();
     }
 }

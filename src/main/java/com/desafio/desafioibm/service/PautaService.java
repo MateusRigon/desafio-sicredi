@@ -7,6 +7,7 @@ import com.desafio.desafioibm.repository.PautaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
@@ -32,9 +33,8 @@ public class PautaService {
         }
     }
 
-    public String excluirPauta(int pautaId){
+    public void excluirPauta(int pautaId){
         this.repositorio.deleteById(pautaId);
-        return "pauta deletada";
     }
 
     public Pauta abrirSessao(SessaoHandler sessao, int pautaId){
@@ -60,6 +60,15 @@ public class PautaService {
         return pauta;
     }
 
+    public Pauta buscaPauta(int id) {
+        return this.repositorio.findById(id).orElse(null);
+    }
 
+    public List<Pauta> buscaTodasPautas() {
+        return this.repositorio.findAll();
+    }
 
+    public Pauta editarPauta(Pauta pauta) {
+        return this.repositorio.save(pauta);
+    }
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,7 +23,6 @@ public class AssociadoService {
         this.repositorio = repositorio;
     }
 
-    @Transactional
     public Associado salvarAssociado(Associado associado) throws ExceptionHandler {
         Optional<Associado> associadoExistente = this.repositorio.findByNome(associado.getNome());
 
@@ -45,5 +45,17 @@ public class AssociadoService {
 
 
         return response;
+    }
+
+    public void deletarAssociado(int associadoId) {
+        this.repositorio.deleteById(associadoId);
+    }
+
+    public List<Associado> buscaTodosAssociados() {
+        return this.repositorio.findAll();
+    }
+
+    public Associado editarAssociado(Associado associado) {
+        return this.repositorio.save(associado);
     }
 }
