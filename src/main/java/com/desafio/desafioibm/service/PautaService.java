@@ -28,9 +28,20 @@ public class PautaService {
         if (pautaExistente.isEmpty()){
             this.repositorio.save(pauta);
             return pauta;
-        }else{
-            throw new ExceptionHandler("Pauta já cadastrada");
         }
+        throw new ExceptionHandler("Pauta já cadastrada");
+    }
+
+    public Pauta buscaPauta(int id) {
+        return this.repositorio.findById(id).orElse(null);
+    }
+
+    public List<Pauta> buscaTodasPautas() {
+        return this.repositorio.findAll();
+    }
+
+    public Pauta editarPauta(Pauta pauta) {
+        return this.repositorio.save(pauta);
     }
 
     public void excluirPauta(int pautaId){
@@ -58,17 +69,5 @@ public class PautaService {
         this.repositorio.save(pauta);
 
         return pauta;
-    }
-
-    public Pauta buscaPauta(int id) {
-        return this.repositorio.findById(id).orElse(null);
-    }
-
-    public List<Pauta> buscaTodasPautas() {
-        return this.repositorio.findAll();
-    }
-
-    public Pauta editarPauta(Pauta pauta) {
-        return this.repositorio.save(pauta);
     }
 }

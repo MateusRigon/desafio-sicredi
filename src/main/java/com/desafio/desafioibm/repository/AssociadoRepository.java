@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface AssociadoRepository extends JpaRepository<Associado, Integer> {
-
-    Optional<Associado> findByNome(String nome);
+    Optional<Associado> findByCpf(String cpf);
+    Associado findById(int id);
 }

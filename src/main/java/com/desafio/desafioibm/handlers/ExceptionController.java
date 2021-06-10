@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ExceptionController extends Exception{
 
     @org.springframework.web.bind.annotation.ExceptionHandler(ExceptionHandler.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
     public Object handlerException(ExceptionHandler ex){
         String response = ex.getErrorMessage();

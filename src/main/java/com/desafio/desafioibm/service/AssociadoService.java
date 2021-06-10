@@ -24,25 +24,23 @@ public class AssociadoService {
     }
 
     public Associado salvarAssociado(Associado associado) throws ExceptionHandler {
-        Optional<Associado> associadoExistente = this.repositorio.findByNome(associado.getNome());
+        Optional<Associado> associadoExistente = this.repositorio.findByCpf(associado.getCpf());
 
         if (associadoExistente.isEmpty()){
             this.repositorio.save(associado);
             return associado;
-        }else{
-            throw new ExceptionHandler("Associado já cadastrado");
         }
+        throw new ExceptionHandler("Associado já cadastrado");
     }
 
     public Associado buscaAssociado(int associadoId){
-        return this.repositorio.findById(associadoId).orElse(null);
+        return this.repositorio.findById(associadoId);
     }
 
     public ResponseEntity<CpfResponseHandler> verificaCpf(String cpf){
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://user-info.herokuapp.com/users/"+cpf;
         ResponseEntity<CpfResponseHandler> response = restTemplate.getForEntity(url, CpfResponseHandler.class);
-
 
         return response;
     }

@@ -24,6 +24,9 @@ public class Voto {
 
     @Column(nullable = false)
     private int pautaId;
+
+    public Voto(int id, String resultado) {
+    }
 }
 
 

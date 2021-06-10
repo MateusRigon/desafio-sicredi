@@ -41,12 +41,10 @@ public class VotoService {
                 voto.setAssociadoId(associadoId);
                 this.repositorio.save(voto);
                 return voto;
-            }else{
-                throw new ExceptionHandler("Associado já votou nesta pauta");
             }
-        }else{
-            throw new ExceptionHandler("CPF do associado não está habilitado para votar nesta pauta");
+            throw new ExceptionHandler("Associado já votou nesta pauta");
         }
+        throw new ExceptionHandler("CPF do associado não está habilitado para votar nesta pauta");
     }
 
     public Long contagemVotos(int pautaId){
