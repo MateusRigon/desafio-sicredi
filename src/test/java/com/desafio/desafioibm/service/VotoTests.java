@@ -1,20 +1,13 @@
 package com.desafio.desafioibm.service;
 
-import com.desafio.desafioibm.entity.Associado;
 import com.desafio.desafioibm.entity.Voto;
-import com.desafio.desafioibm.handlers.CpfResponseHandler;
-import com.desafio.desafioibm.handlers.ExceptionHandler;
-import com.desafio.desafioibm.repository.AssociadoRepository;
 import com.desafio.desafioibm.repository.VotoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.function.Executable;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
