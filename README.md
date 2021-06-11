@@ -17,3 +17,6 @@ identificado por um id único e pode votar apenas uma vez por pauta)
 * JUnit/Mockito
 
 # Rotas
+
+# Testes Unitários
+Teste cobrindo 100% das classes, 68% dos métodos e 65% das linhas
