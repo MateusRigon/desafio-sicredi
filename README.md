@@ -9,6 +9,10 @@ determinado na chamada de abertura ou 1 minuto por default)
 identificado por um id único e pode votar apenas uma vez por pauta)
 * Contabilizar os votos e dar o resultado da votação na pauta
 
+# Requisitos
+* MySQL instalado
+* Alterar usuário e senha no application.properties 
+
 # Tecnologias utilizadas
 * Spring Boot
 * JPA
